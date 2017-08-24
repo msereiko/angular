@@ -21,7 +21,7 @@ else
     cd $INTEGRATION_DIR
     rm -rf $PROJECT
     $NG set --global packageManager=yarn
-    $NG new $PROJECT --skip-install
+    $NG new $PROJECT --skip-install --skip-git
     echo "==================="
     echo $PROJECT created
     echo "==================="
@@ -35,6 +35,8 @@ else
     echo Updating $PROJECT bundles
     echo "==================="
     cd $PROJECT_DIR
+
+    rm -rf .git
 
     sed -i -E 's/ng build/ng build --prod --build-optimizer/g' package.json
     sed -i -E 's/ng test/ng test --single-run/g' package.json
